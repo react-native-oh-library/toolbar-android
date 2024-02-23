@@ -1,6 +1,6 @@
 {
-  "name": "@react-native-community/toolbar-android",
-  "version": "0.2.1",
+  "name": "@react-native-oh-tpl/toolbar-android",
+  "version": "0.2.1-0.1.0",
   "description": "A React Native Component for Android Toolbar",
   "keywords": [
     "toolbar-android",
@@ -71,5 +71,10 @@
   "directories": {
     "doc": "doc",
     "example": "example"
+  },
+  "codegenConfig": {
+    "name": "RNCToolbarAndroidSpecs",
+    "type": "components",
+    "jsSrcsDir": "js/specs"
   }
 }

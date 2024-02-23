@@ -1,0 +1,16 @@
+{
+  "float": [
+    {
+      "name": "default_title_font_size",
+      "value": "20"
+    },
+    {
+      "name": "default_sub_title_font_size",
+      "value": "16"
+    },
+    {
+      "name": "default_menu_text_font_size",
+      "value": "16"
+    }
+  ]
+}

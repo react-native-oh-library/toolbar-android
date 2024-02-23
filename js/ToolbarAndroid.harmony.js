@@ -13,18 +13,15 @@
 const React = require('react');
 const UIManager = require('react-native/Libraries/ReactNative/UIManager');
 
-// const ToolbarAndroidNativeComponent = require('./ToolbarAndroidNativeComponent');
 const resolveAssetSource = require('react-native/Libraries/Image/resolveAssetSource');
 
-import { NativeSyntheticEvent, ColorValue, ViewProps } from 'react-native';
-
-// import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
+import ToolbarAndroidNativeComponent from './specs/index'
+import type {SyntheticEvent} from 'react-native/Libraries/Types/CoreEventTypes';
 import type {ImageSource} from 'react-native/Libraries/Image/ImageSource';
-// import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
-// import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
-// import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
+import type {ColorValue} from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type {ViewProps} from 'react-native/Libraries/Components/View/ViewPropTypes';
+import type {NativeComponent} from 'react-native/Libraries/Renderer/shims/ReactNative';
 
-import RNCToolbarAndroidNativeComponent from './RNCToolbarAndroidNativeComponent';
 /**
  * React component that wraps the Android-only [`Toolbar` widget][0]. A Toolbar can display a logo,
  * navigation icon (e.g. hamburger menu), a title & subtitle and a list of actions. The title and
@@ -68,7 +65,7 @@ type Action = $ReadOnly<{|
   showWithText?: boolean,
 |}>;
 
-type ToolbarAndroidChangeEvent = NativeSyntheticEvent<
+type ToolbarAndroidChangeEvent = SyntheticEvent<
   $ReadOnly<{|
     position: number,
   |}>,
@@ -164,7 +161,7 @@ type ToolbarAndroidProps = $ReadOnly<{|
 
 type Props = $ReadOnly<{|
   ...ToolbarAndroidProps,
-  forwardedRef: ?React.Ref<typeof RNCToolbarAndroidNativeComponent>,
+  forwardedRef: ?React.Ref<typeof ToolbarAndroidNativeComponent>,
 |}>;
 
 class ToolbarAndroid extends React.Component<Props> {
@@ -212,11 +209,11 @@ class ToolbarAndroid extends React.Component<Props> {
         if (action.icon) {
           action.icon = resolveAssetSource(action.icon);
         }
-        if (action.show) {
-          action.show = UIManager.getViewManagerConfig(
-            'ToolbarAndroid',
-          ).Constants.ShowAsAction[action.show];
-        }
+        // if (action.show) {
+        //   action.show = UIManager.getViewManagerConfig(
+        //     'ToolbarAndroid',
+        //   ).Constants.ShowAsAction[action.show];
+        // }
 
         nativeActions.push({
           ...this.props.actions[i],
@@ -228,7 +225,7 @@ class ToolbarAndroid extends React.Component<Props> {
     }
 
     return (
-      <RNCToolbarAndroidNativeComponent
+      <ToolbarAndroidNativeComponent
         onSelect={this._onSelect}
         {...nativeProps}
         ref={forwardedRef}
@@ -240,7 +237,7 @@ class ToolbarAndroid extends React.Component<Props> {
 const ToolbarAndroidToExport = React.forwardRef(
   (
     props: ToolbarAndroidProps,
-    forwardedRef: ?React.Ref<typeof RNCToolbarAndroidNativeComponent>,
+    forwardedRef: ?React.Ref<typeof ToolbarAndroidNativeComponent>,
   ) => {
     return <ToolbarAndroid {...props} forwardedRef={forwardedRef} />;
   },
@@ -249,8 +246,6 @@ const ToolbarAndroidToExport = React.forwardRef(
 /* $FlowFixMe(>=0.89.0 site=react_native_android_fb) This comment suppresses an
  * error found when Flow v0.89 was deployed. To see the error, delete this
  * comment and run Flow. */
-// module.exports = (ToolbarAndroidToExport: Class<
-//   NativeComponent<ToolbarAndroidProps>,
-// >);
-
-export default (ToolbarAndroidToExport: RNCToolbarAndroidNativeComponent)
+module.exports = (ToolbarAndroidToExport: Class<
+  NativeComponent<ToolbarAndroidProps>,
+>);
