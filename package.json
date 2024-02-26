@@ -16,6 +16,9 @@
   "author": "Connectdotz <vsun@connectdotz.com>",
   "main": "js/ToolbarAndroid",
   "types": "index.d.ts",
+  "harmony": {
+    "alias": "@react-native-community/toolbar-android"
+  },
   "scripts": {
     "pack:npm": "npm pack",
     "start": "node node_modules/react-native/local-cli/cli.js start",
