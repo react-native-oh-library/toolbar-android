@@ -149,15 +149,15 @@ export struct Toolbar {
                   .textOverflow({ overflow: TextOverflow.Ellipsis })
                   .maxLines(1)
               }
-              .margin({
-                left: (!this.navIcon && !this.isLogoShow) ? this.props?.contentInsetStart : 0,
-                right: !this.actions ? this.props?.contentInsetEnd : 0
-              })
               .align(Alignment.Center)
               .alignItems(HorizontalAlign.Start)
               .flexShrink(1)
             }
           }
+          .margin({
+            left: !this.navIcon ? this.props?.contentInsetStart : 0,
+            right: !this.actions ? this.props?.contentInsetEnd : 0
+          })
           .flexShrink(1)
           .direction(this.props?.rtl ? Direction.Rtl : Direction.Auto)
 
