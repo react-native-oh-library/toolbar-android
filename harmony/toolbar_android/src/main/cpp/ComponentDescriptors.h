@@ -29,8 +29,6 @@
 
 namespace facebook {
 namespace react {
-
 using ToolbarAndroidComponentDescriptor = ConcreteComponentDescriptor<ToolbarAndroidShadowNode>;
-
 } // namespace react
 } // namespace facebook

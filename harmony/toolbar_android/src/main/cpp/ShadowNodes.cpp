@@ -26,8 +26,6 @@
 
 namespace facebook {
 namespace react {
-
 extern const char ToolbarAndroidComponentName[] = "ToolbarAndroid";
-
 } // namespace react
 } // namespace facebook

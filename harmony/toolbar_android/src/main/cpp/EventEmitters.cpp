@@ -25,29 +25,31 @@
 #include "EventEmitters.h"
 
 namespace facebook {
-    namespace react {
+namespace react {
+void ToolbarAndroidEventEmitter::onSelect(OnSelect $event) const
+{
+    dispatchEvent("onSelect", [$event = std::move($event)](jsi::Runtime &runtime) {
+        auto $payload = jsi::Object(runtime);
+        $payload.setProperty(runtime, "position", $event.position);
+        return $payload;
+    });
+}
 
-        void ToolbarAndroidEventEmitter::onSelect(OnSelect $event) const {
-            dispatchEvent("onSelect", [$event = std::move($event)](jsi::Runtime &runtime) {
-                auto $payload = jsi::Object(runtime);
-                $payload.setProperty(runtime, "position", $event.position);
-                return $payload;
-            });
-        }
+void ToolbarAndroidEventEmitter::onActionSelected(OnActionSelected $event) const
+{
+    dispatchEvent("onActionSelected", [$event = std::move($event)](jsi::Runtime &runtime) {
+        auto $payload = jsi::Object(runtime);
+        $payload.setProperty(runtime, "position", $event.position);
+        return $payload;
+    });
+}
 
-        void ToolbarAndroidEventEmitter::onActionSelected(OnActionSelected $event) const {
-            dispatchEvent("onActionSelected", [$event = std::move($event)](jsi::Runtime &runtime) {
-                auto $payload = jsi::Object(runtime);
-                $payload.setProperty(runtime, "position", $event.position);
-                return $payload;
-            });
-        }
-
-        void ToolbarAndroidEventEmitter::onIconClicked(OnIconClicked $event) const {
-            dispatchEvent("onIconClicked", [$event = std::move($event)](jsi::Runtime &runtime) {
-                auto $payload = jsi::Object(runtime);
-                return $payload;
-            });
-        }
-    } // namespace react
+void ToolbarAndroidEventEmitter::onIconClicked(OnIconClicked $event) const
+{
+    dispatchEvent("onIconClicked", [$event = std::move($event)](jsi::Runtime &runtime) {
+        auto $payload = jsi::Object(runtime);
+        return $payload;
+    });
+}
+} // namespace react
 } // namespace facebook

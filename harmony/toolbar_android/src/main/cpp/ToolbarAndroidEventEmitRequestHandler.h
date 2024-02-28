@@ -29,40 +29,43 @@
 
 using namespace facebook;
 namespace rnoh {
+enum ToolbarEventType {
+    ON_SELECT = 0
+};
 
-    enum ToolbarEventType { ON_SELECT = 0 };
-
-    ToolbarEventType getEventType(ArkJS &arkJs, napi_value eventObject) {
-        auto eventType = arkJs.getString(arkJs.getObjectProperty(eventObject, "type"));
-        if (eventType == "onSelect") {
-            return ToolbarEventType::ON_SELECT;
-        } else {
-            throw std::runtime_error("Unknown toolbar event type");
-        }
+ToolbarEventType getEventType(ArkJS &arkJs, napi_value eventObject)
+{
+    auto eventType = arkJs.getString(arkJs.getObjectProperty(eventObject, "type"));
+    if (eventType == "onSelect") {
+        return ToolbarEventType::ON_SELECT;
+    } else {
+        throw std::runtime_error("Unknown toolbar event type");
     }
+}
 
-    class ToolbarAndroidEventEmitRequestHandler : public EventEmitRequestHandler {
-    public:
-        void handleEvent(EventEmitRequestHandler::Context const &ctx) override {
-            if (ctx.eventName != "ToolbarAndroid") {
-                return;
-            }
-            ArkJS arkJs(ctx.env);
-            auto eventEmitter = ctx.shadowViewRegistry->getEventEmitter<react::ToolbarAndroidEventEmitter>(ctx.tag);
-            if (eventEmitter == nullptr) {
-                return;
-            }
-            auto eventType = getEventType(arkJs, ctx.payload);
-            switch (eventType) {
+class ToolbarAndroidEventEmitRequestHandler : public EventEmitRequestHandler {
+public:
+    void handleEvent(EventEmitRequestHandler::Context const & ctx) override
+    {
+        if (ctx.eventName != "ToolbarAndroid") {
+            return;
+        }
+        ArkJS arkJs(ctx.env);
+        auto eventEmitter = ctx.shadowViewRegistry->getEventEmitter<react::ToolbarAndroidEventEmitter>(ctx.tag);
+        if (eventEmitter == nullptr) {
+            return;
+        }
+        auto eventType = getEventType(arkJs, ctx.payload);
+        switch (eventType) {
             case ToolbarEventType::ON_SELECT: {
                 int index = arkJs.getInteger(arkJs.getObjectProperty(ctx.payload, "position"));
-                react::ToolbarAndroidEventEmitter::OnSelect event{index};
+                react::ToolbarAndroidEventEmitter::OnSelect event{ index };
                 eventEmitter->onSelect(event);
                 break;
             }
             default:
                 break;
-            }
-        };
+        }
     };
+};
 } // namespace rnoh
