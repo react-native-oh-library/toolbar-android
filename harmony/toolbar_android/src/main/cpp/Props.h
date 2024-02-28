@@ -33,148 +33,157 @@
 #include <vector>
 
 namespace facebook {
-    namespace react {
+namespace react {
+enum class ToolbarAndroidShow {
+    ALWAYS,
+    IF_ROOM,
+    NEVER
+};
 
-        enum class ToolbarAndroidShow { Always, IfRoom, Never };
+static inline void fromRawValue(const PropsParserContext &context, const RawValue &value, ToolbarAndroidShow &result)
+{
+    auto string = (std::string)value;
+    if (string == "always") {
+        result = ToolbarAndroidShow::ALWAYS;
+        return;
+    }
+    if (string == "ifRoom") {
+        result = ToolbarAndroidShow::IF_ROOM;
+        return;
+    }
+    if (string == "never") {
+        result = ToolbarAndroidShow::NEVER;
+        return;
+    }
+    abort();
+}
 
-        static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
-                                        ToolbarAndroidShow &result) {
-            auto string = (std::string)value;
-            if (string == "always") {
-                result = ToolbarAndroidShow::Always;
-                return;
-            }
-            if (string == "ifRoom") {
-                result = ToolbarAndroidShow::IfRoom;
-                return;
-            }
-            if (string == "never") {
-                result = ToolbarAndroidShow::Never;
-                return;
-            }
-            abort();
-        }
+static inline std::string toString(const ToolbarAndroidShow &value)
+{
+    switch (value) {
+        case ToolbarAndroidShow::ALWAYS:
+            return "always";
+        case ToolbarAndroidShow::IF_ROOM:
+            return "ifRoom";
+        case ToolbarAndroidShow::NEVER:
+            return "never";
+    }
+}
 
-        static inline std::string toString(const ToolbarAndroidShow &value) {
-            switch (value) {
-            case ToolbarAndroidShow::Always:
-                return "always";
-            case ToolbarAndroidShow::IfRoom:
-                return "ifRoom";
-            case ToolbarAndroidShow::Never:
-                return "never";
-            }
-        }
+struct ToolbarAndroidNativeActionsStruct {
+    std::string title;
+    ImageSource icon;
+    ToolbarAndroidShow show;
+    bool showWithText;
+};
 
-        struct ToolbarAndroidNativeActionsStruct {
-            std::string title;
-            ImageSource icon;
-            ToolbarAndroidShow show;
-            bool showWithText;
-        };
+static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
+    ToolbarAndroidNativeActionsStruct &result)
+{
+    auto map = (butter::map<std::string, RawValue>)value;
 
-        static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
-                                        ToolbarAndroidNativeActionsStruct &result) {
-            auto map = (butter::map<std::string, RawValue>)value;
+    auto tmp_title = map.find("title");
+    if (tmp_title != map.end()) {
+        fromRawValue(context, tmp_title->second, result.title);
+    }
+    auto tmp_icon = map.find("icon");
+    if (tmp_icon != map.end()) {
+        fromRawValue(context, tmp_icon->second, result.icon);
+    }
+    auto tmp_show = map.find("show");
+    if (tmp_show != map.end()) {
+        fromRawValue(context, tmp_show->second, result.show);
+    }
+    auto tmp_showWithText = map.find("showWithText");
+    if (tmp_showWithText != map.end()) {
+        fromRawValue(context, tmp_showWithText->second, result.showWithText);
+    }
+}
 
-            auto tmp_title = map.find("title");
-            if (tmp_title != map.end()) {
-                fromRawValue(context, tmp_title->second, result.title);
-            }
-            auto tmp_icon = map.find("icon");
-            if (tmp_icon != map.end()) {
-                fromRawValue(context, tmp_icon->second, result.icon);
-            }
-            auto tmp_show = map.find("show");
-            if (tmp_show != map.end()) {
-                fromRawValue(context, tmp_show->second, result.show);
-            }
-            auto tmp_showWithText = map.find("showWithText");
-            if (tmp_showWithText != map.end()) {
-                fromRawValue(context, tmp_showWithText->second, result.showWithText);
-            }
-        }
+static inline std::string toString(const ToolbarAndroidNativeActionsStruct &value)
+{
+    return "[Object ToolbarAndroidNativeActionsStruct]";
+}
 
-        static inline std::string toString(const ToolbarAndroidNativeActionsStruct &value) {
-            return "[Object ToolbarAndroidNativeActionsStruct]";
-        }
-
-        static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
-                                        std::vector<ToolbarAndroidNativeActionsStruct> &result) {
-            auto items = (std::vector<RawValue>)value;
-            for (const auto &item : items) {
-    ToolbarAndroidNativeActionsStruct newItem;
-                fromRawValue(context, item, newItem);
-                result.emplace_back(newItem);
-            }
-        }
+static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
+    std::vector<ToolbarAndroidNativeActionsStruct> &result)
+{
+    auto items = (std::vector<RawValue>)value;
+    for (const auto &item : items) {
+        ToolbarAndroidNativeActionsStruct newItem;
+        fromRawValue(context, item, newItem);
+        result.emplace_back(newItem);
+    }
+}
 
 
 struct ToolbarAndroidActionsStruct {
-  std::string title;
-  ImageSource icon;
-  ToolbarAndroidShow show;
-  bool showWithText;
+    std::string title;
+    ImageSource icon;
+    ToolbarAndroidShow show;
+    bool showWithText;
 };
 
-        static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
-                                        ToolbarAndroidActionsStruct &result) {
-            auto map = (butter::map<std::string, RawValue>)value;
+static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
+    ToolbarAndroidActionsStruct &result)
+{
+    auto map = (butter::map<std::string, RawValue>)value;
 
-            auto tmp_title = map.find("title");
-            if (tmp_title != map.end()) {
-                fromRawValue(context, tmp_title->second, result.title);
-            }
-            auto tmp_icon = map.find("icon");
-            if (tmp_icon != map.end()) {
-                fromRawValue(context, tmp_icon->second, result.icon);
-            }
-            auto tmp_show = map.find("show");
-            if (tmp_show != map.end()) {
-                fromRawValue(context, tmp_show->second, result.show);
-            }
-            auto tmp_showWithText = map.find("showWithText");
-            if (tmp_showWithText != map.end()) {
-                fromRawValue(context, tmp_showWithText->second, result.showWithText);
-            }
-        }
+    auto tmp_title = map.find("title");
+    if (tmp_title != map.end()) {
+        fromRawValue(context, tmp_title->second, result.title);
+    }
+    auto tmp_icon = map.find("icon");
+    if (tmp_icon != map.end()) {
+        fromRawValue(context, tmp_icon->second, result.icon);
+    }
+    auto tmp_show = map.find("show");
+    if (tmp_show != map.end()) {
+        fromRawValue(context, tmp_show->second, result.show);
+    }
+    auto tmp_showWithText = map.find("showWithText");
+    if (tmp_showWithText != map.end()) {
+        fromRawValue(context, tmp_showWithText->second, result.showWithText);
+    }
+}
 
-        static inline std::string toString(const ToolbarAndroidActionsStruct &value) {
-            return "[Object ToolbarAndroidActionsStruct]";
-        }
+static inline std::string toString(const ToolbarAndroidActionsStruct &value)
+{
+    return "[Object ToolbarAndroidActionsStruct]";
+}
 
-        static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
-                                        std::vector<ToolbarAndroidActionsStruct> &result) {
-            auto items = (std::vector<RawValue>)value;
-            for (const auto &item : items) {
-                ToolbarAndroidActionsStruct newItem;
-                fromRawValue(context, item, newItem);
-                result.emplace_back(newItem);
-            }
-        }
+static inline void fromRawValue(const PropsParserContext &context, const RawValue &value,
+    std::vector<ToolbarAndroidActionsStruct> &result)
+{
+    auto items = (std::vector<RawValue>)value;
+    for (const auto &item : items) {
+        ToolbarAndroidActionsStruct newItem;
+        fromRawValue(context, item, newItem);
+        result.emplace_back(newItem);
+    }
+}
 
-        class ToolbarAndroidProps final : public ViewProps {
-        public:
-            ToolbarAndroidProps() = default;
-            ToolbarAndroidProps(const PropsParserContext &context, const ToolbarAndroidProps &sourceProps,
-                                   const RawProps &rawProps);
+class ToolbarAndroidProps final : public ViewProps {
+public:
+    ToolbarAndroidProps() = default;
+    ToolbarAndroidProps(const PropsParserContext &context, const ToolbarAndroidProps &sourceProps,
+        const RawProps &rawProps);
 
 #pragma mark - Props
 
-            std::vector<ToolbarAndroidNativeActionsStruct> nativeActions{};
-            std::vector<ToolbarAndroidActionsStruct> actions{};
-            ImageSource logo{};
-            ImageSource navIcon{};
-            ImageSource overflowIcon{};
-            std::string subtitle{};
-            std::string subtitleColor{};
-            std::string title{};
-            std::string titleColor{};
-            int contentInsetStart{0};
-            int contentInsetEnd{0};
-            bool rtl{false};
-            std::string testID{};
-        };
-
-    } // namespace react
+    std::vector<ToolbarAndroidNativeActionsStruct> nativeActions{};
+    std::vector<ToolbarAndroidActionsStruct> actions{};
+    ImageSource logo{};
+    ImageSource navIcon{};
+    ImageSource overflowIcon{};
+    std::string subtitle{};
+    std::string subtitleColor{};
+    std::string title{};
+    std::string titleColor{};
+    int contentInsetStart{ 0 };
+    int contentInsetEnd{ 0 };
+    bool rtl{ false };
+    std::string testID{};
+};
+} // namespace react
 } // namespace facebook

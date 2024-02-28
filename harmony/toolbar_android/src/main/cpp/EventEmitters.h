@@ -27,26 +27,26 @@
 #include <react/renderer/components/view/ViewEventEmitter.h>
 
 namespace facebook {
-    namespace react {
-        class ToolbarAndroidEventEmitter : public ViewEventEmitter {
-        public:
-            using ViewEventEmitter::ViewEventEmitter;
+namespace react {
+class ToolbarAndroidEventEmitter : public ViewEventEmitter {
+public:
+    using ViewEventEmitter::ViewEventEmitter;
 
-            struct OnSelect {
-                int position;
-            };
+    struct OnSelect {
+        int position;
+    };
 
-            struct OnActionSelected {
-                int position;
-            };
+    struct OnActionSelected {
+        int position;
+    };
 
-            struct OnIconClicked {};
+    struct OnIconClicked {};
 
-            void onSelect(OnSelect value) const;
+    void onSelect(OnSelect value) const;
 
-            void onActionSelected(OnActionSelected value) const;
+    void onActionSelected(OnActionSelected value) const;
 
-            void onIconClicked(OnIconClicked value) const;
-        };
-    } // namespace react
+    void onIconClicked(OnIconClicked value) const;
+};
+} // namespace react
 } // namespace facebook

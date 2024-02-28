@@ -32,17 +32,12 @@
 
 namespace facebook {
 namespace react {
-
 JSI_EXPORT extern const char ToolbarAndroidComponentName[];
 
 /*
  * `ShadowNode` for <ToolbarAndroid> component.
  */
-using ToolbarAndroidShadowNode = ConcreteViewShadowNode<
-    ToolbarAndroidComponentName,
-    ToolbarAndroidProps,
-    ToolbarAndroidEventEmitter,
-    ToolbarAndroidState>;
-
+using ToolbarAndroidShadowNode = ConcreteViewShadowNode<ToolbarAndroidComponentName, ToolbarAndroidProps,
+    ToolbarAndroidEventEmitter, ToolbarAndroidState>;
 } // namespace react
 } // namespace facebook

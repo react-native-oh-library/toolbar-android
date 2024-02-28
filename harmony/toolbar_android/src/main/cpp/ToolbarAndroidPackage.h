@@ -28,21 +28,25 @@
 #include "ToolbarAndroidEventEmitRequestHandler.h"
 
 namespace rnoh {
-
 class ToolbarAndroidPackage : public Package {
 public:
-    ToolbarAndroidPackage(Package::Context ctx): Package(ctx) {}
+    ToolbarAndroidPackage(Package::Context ctx) : Package(ctx) {}
 
-    std::vector<facebook::react::ComponentDescriptorProvider> createComponentDescriptorProviders() override {
-        return {facebook::react::concreteComponentDescriptorProvider<facebook::react::ToolbarAndroidComponentDescriptor>()};
+    std::vector<facebook::react::ComponentDescriptorProvider> createComponentDescriptorProviders() override
+    {
+        return {
+            facebook::react::concreteComponentDescriptorProvider<facebook::react::ToolbarAndroidComponentDescriptor>()
+        };
     }
 
-    ComponentJSIBinderByString createComponentJSIBinderByName() override {
-        return {{"ToolbarAndroid", std::make_shared<ToolbarAndroidJSIBinder>()}};
+    ComponentJSIBinderByString createComponentJSIBinderByName() override
+    {
+        return { { "ToolbarAndroid", std::make_shared<ToolbarAndroidJSIBinder>() } };
     }
 
-    EventEmitRequestHandlers createEventEmitRequestHandlers() override {
-        return {std::make_shared<ToolbarAndroidEventEmitRequestHandler>()};
+    EventEmitRequestHandlers createEventEmitRequestHandlers() override
+    {
+        return { std::make_shared<ToolbarAndroidEventEmitRequestHandler>() };
     }
 };
 } // namespace rnoh

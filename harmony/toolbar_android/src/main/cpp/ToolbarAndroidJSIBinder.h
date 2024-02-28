@@ -25,28 +25,29 @@
 #include "RNOHCorePackage/ComponentBinders/ViewComponentJSIBinder.h"
 
 namespace rnoh {
+class ToolbarAndroidJSIBinder : public ViewComponentJSIBinder {
+    facebook::jsi::Object createNativeProps(facebook::jsi::Runtime &rt) override
+    {
+        auto object = ViewComponentJSIBinder::createNativeProps(rt);
+        object.setProperty(rt, "nativeActions", "array");
+        object.setProperty(rt, "logo", "ImageSource");
+        object.setProperty(rt, "navIcon", "ImageSource");
+        object.setProperty(rt, "overflowIcon", "ImageSource");
+        object.setProperty(rt, "subtitle", "string");
+        object.setProperty(rt, "subtitleColor", "string");
+        object.setProperty(rt, "title", "string");
+        object.setProperty(rt, "titleColor", "string");
+        object.setProperty(rt, "contentInsetStart", "int");
+        object.setProperty(rt, "contentInsetEnd", "int");
+        object.setProperty(rt, "rtl", "bool");
+        return object;
+    }
 
-    class ToolbarAndroidJSIBinder : public ViewComponentJSIBinder {
-        facebook::jsi::Object createNativeProps(facebook::jsi::Runtime &rt) override {
-            auto object = ViewComponentJSIBinder::createNativeProps(rt);
-            object.setProperty(rt, "nativeActions", "array");
-            object.setProperty(rt, "logo", "ImageSource");
-            object.setProperty(rt, "navIcon", "ImageSource");
-            object.setProperty(rt, "overflowIcon", "ImageSource");
-            object.setProperty(rt, "subtitle", "string");
-            object.setProperty(rt, "subtitleColor", "string");
-            object.setProperty(rt, "title", "string");
-            object.setProperty(rt, "titleColor", "string");
-            object.setProperty(rt, "contentInsetStart", "int");
-            object.setProperty(rt, "contentInsetEnd", "int");
-            object.setProperty(rt, "rtl", "bool");
-            return object;
-        }
-
-        facebook::jsi::Object createDirectEventTypes(facebook::jsi::Runtime &rt) override {
-            facebook::jsi::Object events(rt);
-            events.setProperty(rt, "topOnSelect", createDirectEvent(rt, "onSelect"));
-            return events;
-        }
-    };
+    facebook::jsi::Object createDirectEventTypes(facebook::jsi::Runtime &rt) override
+    {
+        facebook::jsi::Object events(rt);
+        events.setProperty(rt, "topOnSelect", createDirectEvent(rt, "onSelect"));
+        return events;
+    }
+};
 } // namespace rnoh

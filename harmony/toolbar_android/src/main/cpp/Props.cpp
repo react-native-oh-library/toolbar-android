@@ -29,26 +29,23 @@
 
 namespace facebook {
 namespace react {
+ToolbarAndroidProps::ToolbarAndroidProps(const PropsParserContext &context, const ToolbarAndroidProps &sourceProps,
+    const RawProps &rawProps)
+    : ViewProps(context, sourceProps, rawProps),
 
-ToolbarAndroidProps::ToolbarAndroidProps(
-    const PropsParserContext &context,
-    const ToolbarAndroidProps &sourceProps,
-    const RawProps &rawProps): ViewProps(context, sourceProps, rawProps),
-
-    nativeActions(convertRawProp(context, rawProps, "nativeActions", sourceProps.nativeActions, {})),
-    actions(convertRawProp(context, rawProps, "actions", sourceProps.actions, {})),
-    logo(convertRawProp(context, rawProps, "logo", sourceProps.logo, {})),
-    navIcon(convertRawProp(context, rawProps, "navIcon", sourceProps.navIcon, {})),
-    overflowIcon(convertRawProp(context, rawProps, "overflowIcon", sourceProps.overflowIcon, {})),
-    subtitle(convertRawProp(context, rawProps, "subtitle", sourceProps.subtitle, {})),
-    subtitleColor(convertRawProp(context, rawProps, "subtitleColor", sourceProps.subtitleColor, {})),
-    title(convertRawProp(context, rawProps, "title", sourceProps.title, {})),
-    titleColor(convertRawProp(context, rawProps, "titleColor", sourceProps.titleColor, {})),
-    contentInsetStart(convertRawProp(context, rawProps, "contentInsetStart", sourceProps.contentInsetStart, {0})),
-    contentInsetEnd(convertRawProp(context, rawProps, "contentInsetEnd", sourceProps.contentInsetEnd, {0})),
-    rtl(convertRawProp(context, rawProps, "rtl", sourceProps.rtl, {false})),
-    testID(convertRawProp(context, rawProps, "testID", sourceProps.testID, {}))
-      {}
-
+      nativeActions(convertRawProp(context, rawProps, "nativeActions", sourceProps.nativeActions, {})),
+      actions(convertRawProp(context, rawProps, "actions", sourceProps.actions, {})),
+      logo(convertRawProp(context, rawProps, "logo", sourceProps.logo, {})),
+      navIcon(convertRawProp(context, rawProps, "navIcon", sourceProps.navIcon, {})),
+      overflowIcon(convertRawProp(context, rawProps, "overflowIcon", sourceProps.overflowIcon, {})),
+      subtitle(convertRawProp(context, rawProps, "subtitle", sourceProps.subtitle, {})),
+      subtitleColor(convertRawProp(context, rawProps, "subtitleColor", sourceProps.subtitleColor, {})),
+      title(convertRawProp(context, rawProps, "title", sourceProps.title, {})),
+      titleColor(convertRawProp(context, rawProps, "titleColor", sourceProps.titleColor, {})),
+      contentInsetStart(convertRawProp(context, rawProps, "contentInsetStart", sourceProps.contentInsetStart, { 0 })),
+      contentInsetEnd(convertRawProp(context, rawProps, "contentInsetEnd", sourceProps.contentInsetEnd, { 0 })),
+      rtl(convertRawProp(context, rawProps, "rtl", sourceProps.rtl, { false })),
+      testID(convertRawProp(context, rawProps, "testID", sourceProps.testID, {}))
+{}
 } // namespace react
 } // namespace facebook

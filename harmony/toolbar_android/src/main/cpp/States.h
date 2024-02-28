@@ -32,21 +32,21 @@
 
 namespace facebook {
 namespace react {
-
 class ToolbarAndroidState {
 public:
-  ToolbarAndroidState() = default;
+    ToolbarAndroidState() = default;
 
 #ifdef ANDROID
-  ToolbarAndroidState(ToolbarAndroidState const &previousState, folly::dynamic data){};
-  folly::dynamic getDynamic() const {
-    return {};
-  };
-  MapBuffer getMapBuffer() const {
-    return MapBufferBuilder::EMPTY();
-  };
+    ToolbarAndroidState(ToolbarAndroidState const & previousState, folly::dynamic data){};
+    folly::dynamic getDynamic() const
+    {
+        return {};
+    };
+    MapBuffer getMapBuffer() const
+    {
+        return MapBufferBuilder::EMPTY();
+    };
 #endif
 };
-
 } // namespace react
 } // namespace facebook
