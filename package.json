@@ -10,12 +10,17 @@
   "homepage": "https://github.com/react-native-community/toolbar-android#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/react-native-community/toolbar-android.git"
+    "url": "https://github.com/react-native-oh-library/toolbar-android.git"
   },
   "license": "MIT",
   "author": "Connectdotz <vsun@connectdotz.com>",
   "main": "js/ToolbarAndroid",
   "types": "index.d.ts",
+  "files": [
+    "harmony",
+    "js/specs",
+    "ToolbarAndroid.harmony.js"
+  ],
   "harmony": {
     "alias": "@react-native-community/toolbar-android"
   },
@@ -42,7 +47,9 @@
       "/example/"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "@react-native-community/toolbar-android": "0.2.1"
+  },
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "^7.4.0",
     "@react-native-community/eslint-config":"0.0.7",
@@ -66,6 +73,7 @@
     "react-native": "*"
   },
   "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
   "bugs": {
