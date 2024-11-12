@@ -26,7 +26,7 @@ import { image } from '@kit.ImageKit';
 import { http } from '@kit.NetworkKit';
 import measure from '@ohos.measure';
 import ResponseCode from '@ohos.net.http';
-import { RNOHContext, Size, ViewRawProps } from 'rnoh'
+import { RNOHContext, Size, ViewRawProps } from '@rnoh/react-native-openharmony'
 import { Constants } from './Constants';
 import Logger from './Logger';
 
