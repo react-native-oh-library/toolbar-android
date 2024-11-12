@@ -22,8 +22,7 @@
  * SOFTWARE.
  */
 
-import { Descriptor, ViewBaseProps } from 'rnoh';
-import { RNOHContext, RNViewBase } from 'rnoh'
+import { Descriptor, ViewBaseProps, RNOHContext, RNViewBase } from '@rnoh/react-native-openharmony';
 import Logger from './Logger';
 import { Toolbar, RNCToolbarAndroidProps } from './Toolbar'
 
