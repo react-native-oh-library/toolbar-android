@@ -1,12 +1,12 @@
 {
-  "name": "rnoh-toolbar-android",
-  "version": "0.2.1-0.0.1",
+  "name": "@react-native-oh-tpl/toolbar-android",
+  "version": "0.2.1-0.0.4",
   "description": "",
   "type": "module",
   "main": "Index.ets",
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "rnoh": "file:../rnoh"
+    "@rnoh/react-native-openharmony": "file:../react_native_openharmony.har"
   }
 }
